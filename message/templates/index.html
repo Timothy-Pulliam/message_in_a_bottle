@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bottle</title>
+    </head>
+    <body>
+
+        <h1>Message in a Bottle</h1>
+        <p>
+            Write a message and cast it into the ocean.
+            Someone else will get your message.
+            And you will get someone else's!
+        </p>
+        {% if not is_response %}
+            <form action="/" method="post">
+                {% csrf_token %}
+                <textarea name="message" id="message" maxlength="500" cols="30" rows="10">{{ message }}</textarea>
+                <br>
+                <button type="submit">Send!</button>
+            </form>
+        {% else %}
+            <textarea name="message" id="message" maxlength="500" cols="30" rows="10" readonly>{{ message }}</textarea>
+            <br>
+            <a href="/">
+                <button type="submit">New Message!</button>
+            </a>
+        {% endif %}
+    </body>
+</html>
